@@ -3,6 +3,7 @@ import { useUser, SignInButton, UserButton } from '@clerk/nextjs'
 import { Button } from '@/components/ui/button'
 import { Heart, MapPin, Clock, Users, Music, Shield, Zap, Baby, Handshake, Cross } from 'lucide-react'
 import Link from 'next/link'
+import { Reveal } from '@/components/ui/Reveal'
 
 const ministerios = [
   { nombre: 'Caballeros', icono: Shield, color: 'bg-blue-600', desc: 'Hombres de fe sirviendo a Dios' },
@@ -56,76 +57,108 @@ export default function Home() {
       </nav>
 
       {/* Hero con foto real */}
-      <section className="relative text-white py-28 px-4 overflow-hidden min-h-[600px] flex items-center">
+      <section className="relative text-white px-4 overflow-hidden min-h-[88vh] flex items-center">
+        {/* Imagen de fondo con zoom suave al cargar */}
         <div className="absolute inset-0">
-          <img 
-            src="/foto3.jpeg" 
-            alt="Congregación" 
-            className="w-full h-full object-cover"
+          <img
+            src="/foto3.jpeg"
+            alt="Congregación Iglesia MMM Suba Rincón"
+            className="w-full h-full object-cover hero-bg-zoom"
           />
-          <div className="absolute inset-0 bg-blue-950/75" />
+          {/* Gradiente azul oscuro → dorado */}
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-950/95 via-blue-900/80 to-amber-900/40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-blue-950 via-blue-950/20 to-blue-950/60" />
         </div>
-        <div className="relative z-10 max-w-5xl mx-auto text-center w-full">
-          <span className="inline-block bg-yellow-400/20 text-yellow-400 text-xs font-black uppercase tracking-widest px-4 py-2 rounded-full mb-6">
+
+        {/* Orbes de luz dorada flotantes */}
+        <div className="pointer-events-none absolute -top-20 -left-10 w-80 h-80 rounded-full bg-yellow-400/20 blur-3xl hero-float-slow" />
+        <div className="pointer-events-none absolute bottom-0 right-0 w-96 h-96 rounded-full bg-amber-500/20 blur-3xl hero-float-slower" />
+
+        {/* Contenido */}
+        <div className="relative z-10 max-w-5xl mx-auto text-center w-full py-28">
+          <span className="hero-animate inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-yellow-400/30 text-yellow-300 text-xs font-black uppercase tracking-widest px-5 py-2.5 rounded-full mb-8 shadow-lg" style={{ animationDelay: '0.1s' }}>
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-yellow-400 opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-yellow-400" />
+            </span>
             Comunidad Cristiana en Bogotá
           </span>
-          <h1 className="text-5xl md:text-7xl font-black mb-6 leading-tight">
-            Iglesia MMM<br />
-            <span className="text-yellow-400">Suba Rincón</span>
+
+          <h1 className="hero-animate text-5xl sm:text-6xl md:text-8xl font-black mb-6 leading-[1.05] tracking-tight drop-shadow-2xl" style={{ animationDelay: '0.25s' }}>
+            Iglesia MMM
+            <br />
+            <span className="hero-shimmer bg-gradient-to-r from-yellow-200 via-amber-400 to-yellow-200 bg-clip-text text-transparent">
+              Suba Rincón
+            </span>
           </h1>
-          <p className="text-blue-200 text-xl max-w-2xl mx-auto mb-10">
+
+          <p className="hero-animate text-blue-100/90 text-lg md:text-2xl max-w-2xl mx-auto mb-12 font-medium" style={{ animationDelay: '0.4s' }}>
             Un lugar para encontrar esperanza, familia y el propósito de Dios para tu vida.
           </p>
-          <div className="flex flex-wrap gap-4 justify-center">
+
+          <div className="hero-animate flex flex-wrap gap-4 justify-center" style={{ animationDelay: '0.55s' }}>
             {!isSignedIn ? (
               <SignInButton>
-                <Button size="lg" className="bg-yellow-400 text-blue-950 hover:bg-yellow-300 font-black text-lg px-8">
+                <Button size="lg" className="group bg-gradient-to-r from-yellow-400 to-amber-400 text-blue-950 hover:from-yellow-300 hover:to-amber-300 font-black text-lg px-8 h-14 rounded-xl shadow-2xl shadow-amber-500/30 hover:shadow-amber-400/50 hover:-translate-y-1 transition-all duration-300">
                   Únete a la comunidad
+                  <Heart className="w-5 h-5 fill-blue-950 group-hover:scale-125 transition-transform" />
                 </Button>
               </SignInButton>
             ) : (
               <Link href="/dashboard">
-                <Button size="lg" className="bg-yellow-400 text-blue-950 hover:bg-yellow-300 font-black text-lg px-8">
+                <Button size="lg" className="group bg-gradient-to-r from-yellow-400 to-amber-400 text-blue-950 hover:from-yellow-300 hover:to-amber-300 font-black text-lg px-8 h-14 rounded-xl shadow-2xl shadow-amber-500/30 hover:shadow-amber-400/50 hover:-translate-y-1 transition-all duration-300">
                   Ir a mi panel
+                  <Zap className="w-5 h-5 fill-blue-950 group-hover:scale-125 transition-transform" />
                 </Button>
               </Link>
             )}
             <a href="#servicios">
-              <Button size="lg" variant="outline" className="text-white border-white/50 hover:bg-white/10 text-lg px-8">
+              <Button size="lg" variant="outline" className="bg-white/5 backdrop-blur-md text-white border-white/40 hover:bg-white/15 hover:border-white/70 hover:-translate-y-1 text-lg px-8 h-14 rounded-xl transition-all duration-300">
                 Ver horarios
               </Button>
             </a>
           </div>
         </div>
+
+        {/* Indicador de scroll */}
+        <a href="#servicios" aria-label="Desplázate hacia abajo" className="hero-animate absolute bottom-8 left-1/2 -translate-x-1/2 z-10" style={{ animationDelay: '0.9s' }}>
+          <div className="flex h-10 w-6 items-start justify-center rounded-full border-2 border-white/40 p-1.5">
+            <span className="hero-scroll-dot block h-2 w-1 rounded-full bg-yellow-400" />
+          </div>
+        </a>
       </section>
 
       {/* Servicios */}
-      <section id="servicios" className="py-20 px-4 bg-blue-50">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-12">
-            <span className="text-xs font-black uppercase tracking-widest text-blue-600">Horarios</span>
-            <h2 className="text-4xl font-black text-gray-900 mt-1">Cultos y servicios</h2>
-          </div>
-          <div className="grid md:grid-cols-3 gap-6">
+      <section id="servicios" className="py-24 px-4 bg-gradient-to-b from-blue-50 to-white">
+        <div className="max-w-6xl mx-auto">
+          <Reveal className="text-center mb-14">
+            <span className="inline-block text-xs font-black uppercase tracking-[0.2em] text-blue-600 bg-blue-100 px-4 py-1.5 rounded-full">Horarios</span>
+            <h2 className="text-4xl md:text-5xl font-black text-gray-900 mt-4">Cultos y servicios</h2>
+            <p className="text-gray-500 mt-3 max-w-xl mx-auto">Te esperamos en cualquiera de nuestros encuentros semanales</p>
+          </Reveal>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-  { dia: 'Domingo', hora: '8:00 AM', tipo: 'Clases prebautismales', lugar: 'Salón de clases' },
-  { dia: 'Domingo', hora: '9:00 AM', tipo: 'Escuela dominical', lugar: 'Templo Central' },
-  { dia: 'Martes', hora: '7:00 PM', tipo: 'Culto de oración', lugar: 'Templo Central' },
-  { dia: 'Jueves', hora: '7:00 PM', tipo: 'Enseñanza bíblica', lugar: 'Templo Central' },
-  { dia: 'Sábado', hora: '7:00 PM', tipo: 'Culto de alabanza', lugar: 'Templo Central' },
-].map((s) => (
-              <div key={s.tipo} className="bg-white rounded-2xl p-6 shadow-sm border border-blue-100">
-                <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4">
-                  <Clock className="text-blue-600 w-6 h-6" />
+              { dia: 'Domingo', hora: '8:00 AM', tipo: 'Clases prebautismales', lugar: 'Salón de clases' },
+              { dia: 'Domingo', hora: '9:00 AM', tipo: 'Escuela dominical', lugar: 'Templo Central' },
+              { dia: 'Martes', hora: '7:00 PM', tipo: 'Culto de oración', lugar: 'Templo Central' },
+              { dia: 'Jueves', hora: '7:00 PM', tipo: 'Enseñanza bíblica', lugar: 'Templo Central' },
+              { dia: 'Sábado', hora: '7:00 PM', tipo: 'Culto de alabanza', lugar: 'Templo Central' },
+            ].map((s, i) => (
+              <Reveal key={s.tipo} delay={i * 0.08}>
+                <div className="group relative bg-white rounded-3xl p-7 shadow-sm border border-blue-100 hover:shadow-2xl hover:shadow-blue-200/50 hover:-translate-y-2 transition-all duration-300 overflow-hidden h-full">
+                  <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-yellow-200/40 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="w-14 h-14 bg-gradient-to-br from-blue-600 to-blue-800 rounded-2xl flex items-center justify-center mb-5 group-hover:scale-110 group-hover:rotate-3 transition-transform shadow-lg shadow-blue-500/30">
+                    <Clock className="text-white w-7 h-7" />
+                  </div>
+                  <p className="text-xs font-black uppercase text-blue-600 tracking-widest">{s.dia}</p>
+                  <h3 className="text-3xl font-black text-gray-900 mt-1">{s.hora}</h3>
+                  <p className="text-gray-700 font-bold mt-1">{s.tipo}</p>
+                  <div className="flex items-center gap-1.5 mt-4 text-gray-400 text-sm">
+                    <MapPin className="w-4 h-4" />
+                    <span>{s.lugar}</span>
+                  </div>
                 </div>
-                <p className="text-xs font-black uppercase text-blue-600 tracking-widest">{s.dia}</p>
-                <h3 className="text-2xl font-black text-gray-900 mt-1">{s.hora}</h3>
-                <p className="text-gray-600 font-medium">{s.tipo}</p>
-                <div className="flex items-center gap-1 mt-3 text-gray-400 text-sm">
-                  <MapPin className="w-4 h-4" />
-                  <span>{s.lugar}</span>
-                </div>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>

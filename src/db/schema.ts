@@ -78,3 +78,21 @@ export const comentariosForo = pgTable('comentarios_foro', {
   moderado: boolean('moderado').default(false).notNull(),
   creadoEn: timestamp('creado_en').defaultNow().notNull(),
 })
+
+export const ujieres = pgTable('ujieres', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  nombre: varchar('nombre', { length: 255 }).notNull(),
+  whatsapp: varchar('whatsapp', { length: 20 }).notNull(),
+  activo: boolean('activo').default(true).notNull(),
+  creadoEn: timestamp('creado_en').defaultNow().notNull(),
+})
+
+export const programacionUjieres = pgTable('programacion_ujieres', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  fecha: date('fecha').notNull(),
+  diaSemana: varchar('dia_semana', { length: 20 }).notNull(),
+  tipoServicio: varchar('tipo_servicio', { length: 100 }),
+  ujierIds: text('ujier_ids').notNull(),
+  notas: text('notas'),
+  creadoEn: timestamp('creado_en').defaultNow().notNull(),
+})
