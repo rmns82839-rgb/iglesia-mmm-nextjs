@@ -123,12 +123,29 @@ export default function UjieresPublicoPage() {
   return (
     <div className="min-h-screen bg-gray-50">
 
+      {/* Navbar */}
+      <nav className="sticky top-0 z-50 flex items-center justify-between px-6 py-4 bg-blue-900 shadow-xl">
+        <Link href="/" className="flex items-center gap-2">
+          <Users className="text-yellow-400 w-6 h-6" />
+          <span className="text-white font-black text-xl tracking-tight">MMM Suba Rincón</span>
+        </Link>
+        <div className="hidden md:flex items-center gap-6 text-sm font-bold text-blue-200">
+          <Link href="/" className="hover:text-white transition">Inicio</Link>
+          <Link href="/#ministerios" className="hover:text-white transition">Ministerios</Link>
+          <Link href="/#servicios" className="hover:text-white transition">Servicios</Link>
+          <Link href="/foro" className="hover:text-white transition">Foro</Link>
+          <Link href="/ujieres" className="text-white">Ujieres</Link>
+        </div>
+        <Link href="/">
+          <Button size="sm" variant="outline" className="text-white border-white hover:bg-blue-800 font-bold gap-1">
+            <ArrowLeft className="w-4 h-4" /> Inicio
+          </Button>
+        </Link>
+      </nav>
+
       {/* Header */}
       <div className="bg-gradient-to-r from-blue-900 to-blue-800 text-white px-4 py-6">
         <div className="max-w-4xl mx-auto">
-          <Link href="/" className="flex items-center gap-2 text-blue-300 hover:text-white mb-4 transition text-sm">
-            <ArrowLeft className="w-4 h-4" /> Volver al inicio
-          </Link>
           <div className="flex items-center gap-3">
             <div className="w-12 h-12 bg-amber-400/20 rounded-xl flex items-center justify-center">
               <Users className="w-6 h-6 text-amber-400" />

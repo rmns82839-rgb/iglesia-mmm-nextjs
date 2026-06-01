@@ -32,6 +32,7 @@ export default function Home() {
           <a href="#servicios" className="hover:text-white transition">Servicios</a>
           <a href="#peticiones" className="hover:text-white transition">Peticiones</a>
           <Link href="/foro" className="hover:text-white transition">Foro</Link>
+          <Link href="/ujieres" className="hover:text-white transition">Ujieres</Link>
         </div>
         <div className="flex items-center gap-3">
           {!isSignedIn ? (

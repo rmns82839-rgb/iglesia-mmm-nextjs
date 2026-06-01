@@ -4,7 +4,7 @@ import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import {
   Heart, MessageCircle, Users, Clock, CheckCircle,
-  ArrowLeft, Shield, AlertCircle, TrendingUp
+  ArrowLeft, Shield, AlertCircle, TrendingUp, Calendar
 } from 'lucide-react'
 import Link from 'next/link'
 
@@ -144,6 +144,14 @@ export default function AdminPage() {
                 <Users className="w-8 h-8 text-purple-500 mb-3 group-hover:scale-110 transition-transform" />
                 <h3 className="font-black text-gray-900">Miembros</h3>
                 <p className="text-sm text-gray-500 mt-1">Gestionar usuarios y roles</p>
+              </Card>
+            </Link>
+
+            <Link href="/admin/ujieres">
+              <Card className="p-6 hover:border-amber-300 hover:bg-amber-50 transition cursor-pointer group">
+                <Calendar className="w-8 h-8 text-amber-500 mb-3 group-hover:scale-110 transition-transform" />
+                <h3 className="font-black text-gray-900">Ujieres</h3>
+                <p className="text-sm text-gray-500 mt-1">Programar servicios y notificar</p>
               </Card>
             </Link>
           </div>
